@@ -21,7 +21,12 @@ def check_user(request):
         data = {
             'id': user.id,
             'uid': user.uid,
-            'bio': user.bio
+            'bio': user.bio,
+            'firstName': user.first_name,
+            'lastName': user.last_name,
+            'address': user.address,
+            'phoneNumer': user.phone_number,
+            'isSeller': user.is_seller
         }
         return Response(data)
     else:
@@ -41,13 +46,24 @@ def register_user(request):
     # Now save the user info in the levelupapi_user table
     user = User.objects.create(
         bio=request.data['bio'],
-        uid=request.data['uid']
+        uid=request.data['uid'],
+        first_name = data['firstName'],
+        last_name = data['lastName'],
+        email = data['email'],
+        address = data['address'],
+        phone_number = data['phoneNumber'],
+        is_seller = data['isSeller']
     )
 
     # Return the user info to the client
     data = {
         'id': user.id,
         'uid': user.uid,
-        'bio': user.bio
+        'bio': user.bio,
+        'firstName': user.first_name,
+        'lastName': user.last_name,
+        'address': user.address,
+        'phoneNumber': user.phone_number,
+        'isSeller': user.is_seller        
     }
     return Response(data)

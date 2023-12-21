@@ -9,3 +9,4 @@ class User(models.Model):
     phone_number = models.CharField(max_length=10)
     uid = models.CharField(max_length=50)
     is_seller = models.BooleanField(default=False)
+    bio = models.CharField(max_length=500, default='')
