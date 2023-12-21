@@ -1,0 +1,28 @@
+[
+  {
+    "model": "bangazonapi.order",
+    "pk": 1,
+    "fields": {
+      "customer": 1,
+      "payment_type": "Credit Card",
+      "total": 6,
+      "shipping_address": "34 Wrestling Way",
+      "date_completed": "2023-12-21 03:44:00",
+      "completed": true
+    }
+  },
+  {
+    "model": "bangazonapi.order",
+    "pk": 2,
+    "fields": {
+      "customer": 2
+    }
+  },
+  {
+    "model": "bangazonapi.order",
+    "pk": 3,
+    "fields": {
+      "customer": 3
+    }
+  }
+]

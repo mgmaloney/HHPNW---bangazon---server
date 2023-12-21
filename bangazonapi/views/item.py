@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 from bangazonapi.models import Item, User, Category
 from .category import CategorySerializer
-from .user import UserSerializer
 
 class ItemView(ViewSet):
   """views for item"""
@@ -54,6 +53,11 @@ class ItemView(ViewSet):
     item = Item.objects.get(pk=pk)
     item.delete()
     return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+class UserSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = User
+    fields = ('id', 'uid', 'first_name', 'last_name', 'bio', 'email', 'address', 'phone_number', 'is_seller')
 
 class ItemSerializer(serializers.ModelSerializer):
   category = CategorySerializer(many=False)

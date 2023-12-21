@@ -1,0 +1,23 @@
+[
+  {
+    "model": "bangazonapi.category",
+    "pk": 1,
+    "fields": {
+      "description": "Pet Supplies"
+    }
+  },
+  {
+    "model": "bangazonapi.category",
+    "pk": 2,
+    "fields": {
+      "description":"Fruit"
+    }
+  },
+  {
+    "model": "bangazonapi.category",
+    "pk": 3,
+    "fields": {
+      "description": "Vegetables"
+    }
+  }
+]
