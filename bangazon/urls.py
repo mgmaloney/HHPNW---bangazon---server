@@ -16,7 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from bangazonapi.views import register_user, check_user
+from rest_framework import routers
+from bangazonapi.views import register_user, check_user, CategoryView, UserView, OrderView, ItemView
+
+router = routers.DefaultRouter(trailing_slash=False)
+
+router.register(r'categories', CategoryView, 'category')
+router.register(r'users', UserView, 'user')
+router.register(r'orders', OrderView, 'order')
+router.register(r'items', ItemView, 'item')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
