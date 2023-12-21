@@ -1,0 +1,38 @@
+[
+  {
+    "model": "bangazonapi.item",
+    "pk": 1,
+    "fields": {
+      "name": "Feather Toy",
+      "price": 3,
+      "available_quantity": 150,
+      "image_url": "https://www.barkappeal.com/wp-content/uploads/2020/04/IMG_9639-scaled.jpg",
+      "category": 1,
+      "seller": 1
+    }
+  },
+  {
+    "model": "bangazonapi.item",
+    "pk": 2,
+    "fields": {
+      "name": "Pineapple",
+      "price": 5,
+      "available_quantity": 300,
+      "image_url": "https://www.kroger.com/product/images/large/front/0000000004430",
+      "category": 2,
+      "seller": 2
+    }
+  },
+  {
+    "model": "bangazonapi.item",
+    "pk": 3,
+    "fields": {
+      "name": "Grape",
+      "price": 1,
+      "available_quantity": 1000,
+      "image_url": "https://www.kroger.com/product/images/large/front/0000000004022",
+      "category": 2,
+      "seller": 2
+    }
+  }
+]
