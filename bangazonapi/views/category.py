@@ -7,7 +7,7 @@ from bangazonapi.models import Category
 class CategoryView(ViewSet):
   """views for category"""
   def list(self, request):
-    categories = Category.object.all()
+    categories = Category.objects.all()
     serializer = CategorySerializer(categories, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
