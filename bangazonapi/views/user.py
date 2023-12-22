@@ -8,12 +8,16 @@ from bangazonapi.models import User, Order, Order_Item
 from .item import ItemSerializer
 
 class UserView(ViewSet):
-  @action(methods=['POST'], detail=False)
-  def has_order(self, request):
-    customer = User.objects.get(request.data['userId'])
-    order = Order.objects.filter(Q(customer=customer) & Q(completed=False))
-    if order.exists():
-      serializer = OrderSerializer(order)
+  @action(methods=['POST'], detail=True)
+  def has_order(self, request, pk):
+    customer = User.objects.get(pk=pk)
+    order_query = Order.objects.filter(Q(customer=customer) & Q(completed=False))
+    if order_query.exists():
+      assert len(order_query) == 1
+      if len(order_query) == 1:
+        order = list(order_query)[0]
+        serializer = OrderSerializer(order)
+      
       return Response(serializer.data, status=status.HTTP_200_OK)
     
     else:

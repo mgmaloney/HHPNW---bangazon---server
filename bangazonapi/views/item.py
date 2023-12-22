@@ -23,7 +23,7 @@ class ItemView(ViewSet):
     item = Item.objects.create(
       name = request.data['name'],
       price = request.data['price'],
-      available_quantity = request.data('availableQuantity'),
+      available_quantity = request.data['availableQuantity'],
       image_url = request.data['imageUrl'],
       category = category,
       seller = seller
@@ -38,7 +38,7 @@ class ItemView(ViewSet):
     
     item.name = request.data['name']
     item.price = request.data['price']
-    item.available_quantity = request.data('availableQuantity')
+    item.available_quantity = request.data['availableQuantity']
     item.image_url = request.data['imageUrl']
     item.category = category
     item.seller = seller

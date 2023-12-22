@@ -22,31 +22,36 @@ class OrderView(ViewSet):
   def update(self, request, pk):
     order = Order.objects.get(pk=pk)
     
-    order.payment_type = request.data['paymentType']
-    order.total = request.data['total']
-    order.shipping_address = request.data['shippingAddress']
+    if 'paymentType' in request.data:
+      order.payment_type = request.data['paymentType']
     
-    if request.data['dateCompleted'] is not None:
+    if 'total' in request.data:  
+      order.total = request.data['total']
+    if 'shippingAddress' in request.data:
+      order.shipping_address = request.data['shippingAddress']
+    
+    if 'dateCompleted' in request.data:
       order.date_completed = request.data['dateCompleted']
     
-    if request.data['completed'] is not None:
+    if 'completed' in request.data:
       order.completed = request.data['completed']
     
     order.save()
     
-    existing_order_items = Order_Item.objects.filter(order=order)
+    existing_order_items = Order_Item.objects.all().filter(order=order)
     if existing_order_items.exists():
       for order_item in existing_order_items:
         order_item.delete()
     
-    item_ids = request.data['items']
+    if 'items' in request.data:
+      item_ids = request.data['items']
     
-    for item_id in item_ids:
-      item = Item.objects.get(id=item_id)
-      Order_Item.objects.create(
-        item = item,
-        order = order
-      )
+      for item_id in item_ids:
+        item = Item.objects.get(id=item_id)
+        Order_Item.objects.create(
+          item = item,
+          order = order
+        )
     
     return Response(None, status=status.HTTP_204_NO_CONTENT)
     
@@ -59,7 +64,7 @@ class OrderSerializer(serializers.ModelSerializer):
     fields = ('id', 'customer', 'payment_type', 'total', 'shipping_address', 'date_completed', 'completed', 'items')
     
   def get_items(self, obj):
-    order_items = Order_Item.filter(order=obj)
+    order_items = Order_Item.objects.all().filter(order=obj)
     items_list = [order_item.item for order_item in order_items]
     serializer = ItemSerializer(items_list, many=True)
     return serializer.data
