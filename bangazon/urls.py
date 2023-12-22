@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
 from rest_framework import routers
 from bangazonapi.views import register_user, check_user, CategoryView, UserView, OrderView, ItemView
 
@@ -28,6 +29,7 @@ router.register(r'items', ItemView, 'item')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(router.urls)),
     path('register', register_user),
     path('checkuser', check_user)
 ]
