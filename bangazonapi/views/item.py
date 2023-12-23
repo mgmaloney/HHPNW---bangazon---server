@@ -14,6 +14,12 @@ class ItemView(ViewSet):
   
   def list(self, request):
     items = Item.objects.all()
+    
+    seller = request.query_params.get('sellerId', None)
+    
+    if seller is not None:
+      items = items.filter(seller_id = seller)
+    
     serializer = ItemSerializer(items, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
   
