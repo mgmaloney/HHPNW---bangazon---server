@@ -39,7 +39,7 @@ class OrderView(ViewSet):
     order.save()
     
     existing_order_items = Order_Item.objects.all().filter(order=order)
-    if existing_order_items.exists():
+    if 'items' in request.data and existing_order_items.exists():
       for order_item in existing_order_items:
         order_item.delete()
     
@@ -53,7 +53,12 @@ class OrderView(ViewSet):
           order = order
         )
     
-    return Response(None, status=status.HTTP_204_NO_CONTENT)
+    if 'items' in request.data:
+      order = Order.objects.get(pk=pk)
+      
+    serializer = OrderSerializer(order)
+    
+    return Response(serializer.data, status=status.HTTP_200_OK)
     
 
 class OrderSerializer(serializers.ModelSerializer):

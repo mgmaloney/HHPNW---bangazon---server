@@ -47,12 +47,12 @@ def register_user(request):
     user = User.objects.create(
         bio=request.data['bio'],
         uid=request.data['uid'],
-        first_name = data['firstName'],
-        last_name = data['lastName'],
-        email = data['email'],
-        address = data['address'],
-        phone_number = data['phoneNumber'],
-        is_seller = data['isSeller']
+        first_name = request.data['firstName'],
+        last_name = request.data['lastName'],
+        email = request.data['email'],
+        address = request.data['address'],
+        phone_number = request.data['phoneNumber'],
+        is_seller = request.data['isSeller']
     )
 
     # Return the user info to the client
