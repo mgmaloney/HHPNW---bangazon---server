@@ -27,6 +27,7 @@ class OrderView(ViewSet):
     
     if 'total' in request.data:  
       order.total = request.data['total']
+      
     if 'shippingAddress' in request.data:
       order.shipping_address = request.data['shippingAddress']
     

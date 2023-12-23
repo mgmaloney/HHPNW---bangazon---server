@@ -24,7 +24,8 @@ class UserView(ViewSet):
       new_order = Order.objects.create(
         customer = customer,
       )
-      return Response(None, status=status.HTTP_201_CREATED)
+      serializer = OrderSerializer(new_order)
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     
 
