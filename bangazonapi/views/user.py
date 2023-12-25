@@ -41,7 +41,7 @@ class OrderSerializer(serializers.ModelSerializer):
   items = serializers.SerializerMethodField(allow_null=True)
   class Meta:
     model = Order
-    fields = ('id', 'customer', 'payment_type', 'total', 'shipping_address', 'date_completed', 'completed', 'items')
+    fields = ('id', 'customer', 'payment_type', 'total', 'billing_address', 'shipping_address', 'date_completed', 'completed', 'items')
     
   def get_items(self, obj):
     order_items = Order_Item.objects.all().filter(order=obj)

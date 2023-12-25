@@ -6,7 +6,8 @@
       "customer": 1,
       "payment_type": "Credit Card",
       "total": 6,
-      "shipping_address": "34 Wrestling Way",
+      "billing_address": "34 Wrestling Way, Sierra, NV",
+      "shipping_address": "34 Wrestling Way, Sierra, NV",
       "date_completed": "2023-12-21 03:44:00",
       "completed": true
     }
