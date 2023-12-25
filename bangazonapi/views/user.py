@@ -24,7 +24,8 @@ class UserView(ViewSet):
       new_order = Order.objects.create(
         customer = customer,
       )
-      return Response(None, status=status.HTTP_201_CREATED)
+      serializer = OrderSerializer(new_order)
+      return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     
 
@@ -37,6 +38,16 @@ class UserSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
   customer = UserSerializer()
+  items = serializers.SerializerMethodField(allow_null=True)
   class Meta:
     model = Order
-    fields = ('id', 'customer', 'payment_type', 'total', 'shipping_address', 'date_completed', 'completed')
+    fields = ('id', 'customer', 'payment_type', 'total', 'billing_address', 'shipping_address', 'date_completed', 'completed', 'items')
+    
+  def get_items(self, obj):
+    order_items = Order_Item.objects.all().filter(order=obj)
+    items_list = [order_item.item for order_item in order_items]
+    serializer = ItemSerializer(items_list, many=True)
+    if len(items_list) > 0:
+      return serializer.data
+    else:
+      return []
