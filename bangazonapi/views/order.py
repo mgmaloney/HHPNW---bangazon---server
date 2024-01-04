@@ -27,7 +27,8 @@ class OrderView(ViewSet):
     order = Order.objects.get(pk=pk)
     
     if 'customerId' in request.data:
-      order.customer = request.data['customerId']
+      customer = User.objects.get(id=request.data['customerId'])
+      order.customer = customer
     
     if 'paymentType' in request.data:
       order.payment_type = request.data['paymentType']
@@ -70,6 +71,20 @@ class OrderView(ViewSet):
     serializer = OrderSerializer(order)
     
     return Response(serializer.data, status=status.HTTP_200_OK)
+  
+  def create(self, request):
+    customer = User.objects.get(id=request.data['customerId'])
+    new_order = Order.objects.create(
+        customer = customer,
+        order_type = request.data['orderType'],
+      )
+    serializer = OrderSerializer(new_order)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+  
+  def destroy(self, request, pk):
+    order = Order.objects.get(pk=pk)
+    order.delete()
+    return Response(None, status=status.HTTP_204_NO_CONTENT)
     
 
 class OrderSerializer(serializers.ModelSerializer):

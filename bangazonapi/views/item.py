@@ -13,7 +13,10 @@ class ItemView(ViewSet):
     return Response(serializer.data, status=status.HTTP_200_OK)
   
   def list(self, request):
-    items = Item.objects.all()    
+    items = Item.objects.all()
+    if request.query_params.get('categoryId', None) is not None:
+      items = Item.objects.filter(id=request.query_params.get('categoryId'))
+       
     serializer = ItemSerializer(items, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
   
