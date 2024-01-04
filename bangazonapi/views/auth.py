@@ -21,11 +21,10 @@ def check_user(request):
         data = {
             'id': user.id,
             'uid': user.uid,
-            'bio': user.bio,
             'firstName': user.first_name,
             'lastName': user.last_name,
             'address': user.address,
-            'phoneNumer': user.phone_number,
+            'phoneNumber': user.phone_number,
             'isSeller': user.is_seller
         }
         return Response(data)
@@ -43,27 +42,21 @@ def register_user(request):
       request -- The full HTTP request object
     '''
 
-    # Now save the user info in the levelupapi_user table
+    # Now save the user info in the HHPNW_user table
     user = User.objects.create(
-        bio=request.data['bio'],
-        uid=request.data['uid'],
         first_name = request.data['firstName'],
         last_name = request.data['lastName'],
         email = request.data['email'],
         address = request.data['address'],
         phone_number = request.data['phoneNumber'],
-        is_seller = request.data['isSeller']
     )
 
     # Return the user info to the client
     data = {
         'id': user.id,
-        'uid': user.uid,
-        'bio': user.bio,
         'firstName': user.first_name,
         'lastName': user.last_name,
         'address': user.address,
-        'phoneNumber': user.phone_number,
-        'isSeller': user.is_seller        
+        'phoneNumber': user.phone_number,      
     }
     return Response(data)
