@@ -16,11 +16,9 @@ class OrderView(ViewSet):
   
   def list(self, request):
     orders = Order.objects.all()
-    
-    customer = request.query_params.get('customerId', None)
-    
-    if request.query_params.get('completed', None) is not None and customer is not None:
-      orders = orders.filter(completed = True, customer_id = customer)
+        
+    if request.query_params.get('completed', None) is not None:
+      orders = orders.filter(completed = True)
     
     serializer = OrderSerializer(orders, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
@@ -28,17 +26,20 @@ class OrderView(ViewSet):
   def update(self, request, pk):
     order = Order.objects.get(pk=pk)
     
+    if 'customerId' in request.data:
+      order.customer = request.data['customerId']
+    
     if 'paymentType' in request.data:
       order.payment_type = request.data['paymentType']
     
     if 'total' in request.data:  
       order.total = request.data['total']
       
-    if 'shippingAddress' in request.data:
-      order.shipping_address = request.data['shippingAddress']
+    if 'tip' in request.data:  
+      order.tip = request.data['tip']
       
-    if 'billingAddress' in request.data:
-      order.billing_address = request.data['billingAddress']
+    if 'orderType' in request.data:
+      order.order_type = request.data['orderType']
     
     if 'dateCompleted' in request.data:
       order.date_completed = request.data['dateCompleted']
@@ -76,7 +77,7 @@ class OrderSerializer(serializers.ModelSerializer):
   items = serializers.SerializerMethodField(allow_null=True)
   class Meta:
     model = Order
-    fields = ('id', 'customer', 'payment_type', 'total', 'shipping_address', 'date_completed', 'completed', 'billing_address', 'items')
+    fields = ('id', 'customer', 'payment_type', 'total', 'tip', 'date_completed', 'completed', 'order_type', 'items')
     
   def get_items(self, obj):
     order_items = Order_Item.objects.all().filter(order=obj)

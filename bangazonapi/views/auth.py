@@ -44,6 +44,7 @@ def register_user(request):
 
     # Now save the user info in the HHPNW_user table
     user = User.objects.create(
+        uid = request.data['uid'],
         first_name = request.data['firstName'],
         last_name = request.data['lastName'],
         email = request.data['email'],
@@ -54,6 +55,7 @@ def register_user(request):
     # Return the user info to the client
     data = {
         'id': user.id,
+        'uid': user.uid,
         'firstName': user.first_name,
         'lastName': user.last_name,
         'address': user.address,
