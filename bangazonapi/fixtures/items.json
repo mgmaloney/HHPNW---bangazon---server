@@ -25,7 +25,6 @@
     "fields": {
       "name": "Cinnastix",
       "price": 6.99,
-      "available_quantity": 1000,
       "image_url": "https://dinnerthendessert.com/wp-content/uploads/2015/10/Cinnastix4.jpg",
       "category": 2
     }
