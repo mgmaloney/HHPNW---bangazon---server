@@ -19,8 +19,8 @@
     "model": "bangazonapi.order_item",
     "pk": 3,
     "fields": {
-      "order": 2,
-      "item": 1
+      "order": 1,
+      "item": 4
     }
   }
 ]

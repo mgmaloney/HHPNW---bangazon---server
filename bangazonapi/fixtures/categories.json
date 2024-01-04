@@ -3,21 +3,28 @@
     "model": "bangazonapi.category",
     "pk": 1,
     "fields": {
-      "description": "Pet Supplies"
+      "description": "Pizzas"
     }
   },
   {
     "model": "bangazonapi.category",
     "pk": 2,
     "fields": {
-      "description":"Fruit"
+      "description": "Desserts"
     }
   },
   {
     "model": "bangazonapi.category",
     "pk": 3,
     "fields": {
-      "description": "Vegetables"
+      "description": "Wings"
+    }
+  },
+  {
+    "model": "bangazonapi.category",
+    "pk": 4,
+    "fields": {
+      "description": "Appetizers"
     }
   }
 ]

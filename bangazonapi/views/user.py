@@ -27,6 +27,17 @@ class UserView(ViewSet):
       serializer = OrderSerializer(new_order)
       return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+  def create(self, request):
+    user = User.objects.create(
+      uid = request.data['uid'],
+      first_name = request.data['firstName'],
+      last_name = request.data['lastName'],
+      email = request.data['email'],
+      address = request.data['address'],
+      phone_number = request.data['phoneNumber']
+    )
+    return Response(None, status=status.HTTP_201_CREATED)
+    
     
 
 
@@ -34,7 +45,7 @@ class UserView(ViewSet):
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
-    fields = ('id', 'uid', 'first_name', 'last_name', 'bio', 'email', 'address', 'phone_number', 'is_seller')
+    fields = ('id', 'uid', 'first_name', 'last_name', 'email', 'address', 'phone_number')
 
 class OrderSerializer(serializers.ModelSerializer):
   customer = UserSerializer()

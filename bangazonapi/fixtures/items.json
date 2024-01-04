@@ -3,36 +3,41 @@
     "model": "bangazonapi.item",
     "pk": 1,
     "fields": {
-      "name": "Feather Toy",
-      "price": 3,
-      "available_quantity": 150,
-      "image_url": "https://www.barkappeal.com/wp-content/uploads/2020/04/IMG_9639-scaled.jpg",
-      "category": 1,
-      "seller": 1
+      "name": "Pineapple Pizza",
+      "price": 12.99,
+      "image_url": "https://sparkpeo.hs.llnwd.net/e1/resize/630m620/e4/7/1/l719944983.jpg",
+      "category": 1
     }
   },
   {
     "model": "bangazonapi.item",
     "pk": 2,
     "fields": {
-      "name": "Pineapple",
-      "price": 5,
-      "available_quantity": 300,
-      "image_url": "https://www.kroger.com/product/images/large/front/0000000004430",
-      "category": 2,
-      "seller": 2
+      "name": "6 Wings",
+      "price": 9.99,
+      "image_url": "https://sweetpeaskitchen.com/wp-content/uploads/2019/09/Smoked-Buffalo-Chicken-Wings-6.jpg",
+      "category": 3
     }
   },
   {
     "model": "bangazonapi.item",
     "pk": 3,
     "fields": {
-      "name": "Grape",
-      "price": 1,
+      "name": "Cinnastix",
+      "price": 6.99,
       "available_quantity": 1000,
-      "image_url": "https://www.kroger.com/product/images/large/front/0000000004022",
-      "category": 2,
-      "seller": 2
+      "image_url": "https://dinnerthendessert.com/wp-content/uploads/2015/10/Cinnastix4.jpg",
+      "category": 2
+    }
+  },
+  {
+    "model": "bangazonapi.item",
+    "pk": 4,
+    "fields": {
+      "name": "Breadstix",
+      "price": 4.99,
+      "image_url": "https://newglarusbakery.com/wp-content/uploads/2023/03/Breadsticks-2-1.jpg",
+      "category": 4
     }
   }
 ]
